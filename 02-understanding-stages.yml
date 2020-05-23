@@ -32,7 +32,7 @@ stages:
   jobs:
   - job: ProDeployjJob
     steps: 
-    - bash: echo ProdDeployJob
+    - bash: echo build ProdDeployJob
 
 
 - 
