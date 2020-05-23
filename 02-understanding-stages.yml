@@ -24,9 +24,9 @@ stages:
     - bash: ls -R $(System.DefaultWorkingDirectory)
     - bash: echo $(Build.ArtifactStagingDirectory)
 
-  - job: SecondJob
-    steps: 
-    - bash: echo Build SecondJob
+  # - job: SecondJob
+  #   steps: 
+  #   - bash: echo Build SecondJob
 # - stage: DevDeploy
 #   variables:  
 #     environment: Dev
