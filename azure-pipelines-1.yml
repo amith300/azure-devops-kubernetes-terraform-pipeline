@@ -23,8 +23,8 @@ stages:
  
     - task: Docker@2
       inputs:
-        containerRegistry: 'in30min-docker-hub'
-        repository: 'in30min/currency-exchange-devops'
+        containerRegistry: 'amith1987-docker-hub'
+        repository: 'in30mins/currency-exchange-devops'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
