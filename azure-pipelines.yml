@@ -6,17 +6,45 @@
 trigger:
 - master
 
-strategy:
-  matrix:
-    linux:
-      operatingSystem: 'ubuntu-latest'
-    mac:
-      operatingSystem: 'macos-latest'
-
-
+# strategy:
+#   matrix:
+#     linux:
+#       operatingSystem: 'ubuntu-latest'
+#     mac:
+#       operatingSystem: 'macos-latest'
 
 pool:
-  vmImage: $(operatingSystem)
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildJob
+    steps:
+    - bash: echo "Do the build"
+- stage: DevDeploy
+  jobs:
+  - job: Buildjob
+    steps:
+    - bash: echo "Starat Dev Deploy"
+  - deployment: DevDeployJob
+    enviornment: Dev
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo deploy to Dev
+- stage: QADeploy
+  jobs:
+  - deployment: DevDeployJob
+    enviornment: QA
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+          - scripts: echo deploy to QA
+
+
 
 steps:
 - script: echo Running on $(operatingSystem)
