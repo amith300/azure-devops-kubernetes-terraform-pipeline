@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
@@ -24,12 +19,9 @@ stages:
     - bash: echo "Do the build"
 - stage: DevDeploy
   jobs:
-  - job: Buildjob
-    steps:
-    - bash: echo "Starat Dev Deploy"
-  - deployment: DevDeployJob
-    enviornment: Dev
-    strategy:
+   - deployment: DevDeployJob
+     enviornment: Dev
+     strategy:
       runOnce:
         deploy:
           steps:
